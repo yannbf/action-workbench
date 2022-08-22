@@ -27,7 +27,7 @@ jobs:
           cmd: 'jq .numPassedTests test-results.json -r'
 
       - name: Print results
-        if: ${{ steps.tests.outputs.value > 0 }}
+        if: steps.tests.outputs.value > 0
         run: |
           cat test-results.json
           echo ${{ steps.tests.outputs.value }}
