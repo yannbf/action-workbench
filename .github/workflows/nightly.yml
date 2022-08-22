@@ -19,8 +19,8 @@ jobs:
       - name: Prepare test results
         id: tests
         uses: sergeysova/jq-action@v2
+        run: yarn test
         with:
-          run: yarn test
           cmd: 'jq .numPassedTests test-results.json -r'
 
       - name: Print results
