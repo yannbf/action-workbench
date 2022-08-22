@@ -12,14 +12,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Run tests
+        id: tests
+        with:
+          run: yarn test
       
       - name: Prepare test results
         id: tests
         uses: sergeysova/jq-action@v2
         with:
-          cmd: 'jq .numPassedTests test-results-mock.json -r'
+          cmd: 'jq .numPassedTests test-results.json -r'
+
       - name: Print results
         if: ${{ always() }}
         run: |
           echo ${{ steps.tests.outputs.value }}
-          echo "Res: ${{ steps.tests.outputs.value > 0}}"
+          echo "Res: ${{ steps.tests.outputs.value > 0 }}"

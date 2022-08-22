@@ -1,0 +1,23 @@
+{
+  "name": "action-workbench",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --json --outputFile test-results.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yannbf/action-workbench.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yannbf/action-workbench/issues"
+  },
+  "homepage": "https://github.com/yannbf/action-workbench#readme",
+  "dependencies": {
+    "jest": "^28.1.3"
+  }
+}
