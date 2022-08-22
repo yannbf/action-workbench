@@ -29,5 +29,6 @@ jobs:
       - name: Print results
         if: ${{ always() }}
         run: |
+          cat test-results.json
           echo ${{ steps.tests.outputs.value }}
           echo "Res: ${{ steps.tests.outputs.value > 0 }}"
