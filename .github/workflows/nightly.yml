@@ -24,11 +24,12 @@ jobs:
         id: tests
         uses: sergeysova/jq-action@v2
         with:
-          cmd: 'jq .numPassedTests test-results.json -r'
+          cmd: 'FAILURES=$(jq .numPassedTests test-results.json -r) >> $GITHUB_ENV'
 
       - name: Print results
-        if: steps.tests.outputs.value > 0
+        if: ${{ always() }}
         run: |
-          cat test-results.json
+          echo ${{ env }}
+          echo ${{ env.FAILURES }}
           echo ${{ steps.tests.outputs.value }}
           echo "Res: ${{ steps.tests.outputs.value > 0 }}"
