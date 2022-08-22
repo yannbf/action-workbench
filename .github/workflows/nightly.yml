@@ -18,9 +18,6 @@ jobs:
 
       - name: Run tests
         run: yarn test
-      
-      - run: ls -la
-        if: ${{ always() }}
 
       - name: Prepare test results
         if: ${{ always() }}
@@ -30,7 +27,7 @@ jobs:
           cmd: 'jq .numPassedTests test-results.json -r'
 
       - name: Print results
-        if: ${{ always() }}
+        if: ${{ steps.tests.outputs.value > 0 }}
         run: |
           cat test-results.json
           echo ${{ steps.tests.outputs.value }}
