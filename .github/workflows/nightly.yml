@@ -32,6 +32,6 @@ jobs:
           echo "FAILED=${{ steps.tests.outputs.value > 0 }}" >> $GITHUB_ENV
 
       - name: Print results
-        if: ${{ env.FAILED === 'true' }}
+        if: ${{ env.FAILED == 'true' }}
         run: |
           echo "PROBLEMS!"
