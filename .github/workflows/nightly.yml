@@ -24,12 +24,17 @@ jobs:
         id: tests
         uses: sergeysova/jq-action@v2
         with:
-          cmd: 'FAILURES=$(jq .numPassedTests test-results.json -r) >> $GITHUB_ENV'
+          cmd: 'jq .numPassedTests test-results.json -r'
+      
+      - name: Set test results to env
+        if: ${{ always() }}
+        run: |
+          echo "FAILED=${{ steps.tests.outputs.value > 0 }}" >> $GITHUB_ENV
 
       - name: Print results
         if: ${{ always() }}
         run: |
-          echo ${{ env }}
-          echo ${{ env.FAILURES }}
-          echo ${{ steps.tests.outputs.value }}
-          echo "Res: ${{ steps.tests.outputs.value > 0 }}"
+          cat test-results.json
+          echo "${{ env }}"
+          echo "${{ env.FAILED }}"
+          echo "$GITHUB_CONTEXT"
