@@ -34,7 +34,6 @@ jobs:
       - name: Print results
         if: ${{ always() }}
         run: |
-          cat test-results.json
-          echo "${{ env }}"
-          echo "${{ env.FAILED }}"
-          echo "$GITHUB_CONTEXT"
+          echo "first ${{ env }}"
+          echo "second ${{ env.FAILED }}"
+          echo "third $GITHUB_CONTEXT"
