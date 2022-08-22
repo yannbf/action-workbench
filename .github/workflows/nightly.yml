@@ -37,7 +37,7 @@ jobs:
           echo "${{ env.FAILED }}"
 
       - name: Print results 2
-        if: ${{ always() && env.FAILED == true }}
+        if: ${{ env.FAILED == 'true' }}
         run: |
           echo "PROBLEMS!"
 
