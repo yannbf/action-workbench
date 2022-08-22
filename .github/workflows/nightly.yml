@@ -18,8 +18,7 @@ jobs:
 
       - name: Run tests
         id: tests
-        with:
-          run: yarn test
+        run: yarn test
       
       - name: Prepare test results
         id: tests
