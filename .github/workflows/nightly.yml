@@ -1,0 +1,25 @@
+name: Test
+
+on: [push]
+
+jobs:
+  assert_test_runner_failures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      
+      - name: Prepare test results
+        id: tests
+        uses: sergeysova/jq-action@v2
+        with:
+          cmd: 'jq .numPassedTests test-results-mock.json -r'
+      - name: Print results
+        if: ${{ always() }}
+        run: |
+          echo ${{ steps.tests.outputs.value }}
+          echo "Res: ${{ steps.tests.outputs.value > 0}}"
