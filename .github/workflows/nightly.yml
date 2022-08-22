@@ -16,10 +16,12 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Run tests
+        run: yarn test
+      - run: ls
       - name: Prepare test results
         id: tests
         uses: sergeysova/jq-action@v2
-        run: yarn test
         with:
           cmd: 'jq .numPassedTests test-results.json -r'
 
