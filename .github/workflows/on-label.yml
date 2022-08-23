@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.event.label.name }}
+      - run: echo ${{ toJson(github.event.label) }}
   test2:
     runs-on: ubuntu-latest
     if: github.event.label
