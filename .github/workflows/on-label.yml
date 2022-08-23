@@ -9,4 +9,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.event.label.name }}
+  test2:
+    runs-on: ubuntu-latest
+    if: github.event.label
+    steps:
+      - run: echo ${{ github.event.label }}
+  test3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label != ''}}
+    steps:
       - run: echo ${{ github.event.label }}
